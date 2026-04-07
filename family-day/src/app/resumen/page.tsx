@@ -50,7 +50,7 @@ export default function Resumen() {
   });
 
   return (
-    <div className='mb-18 w-full flex flex-col items-center justify-start bg-gradient-to-br from-blue-100 via-white to-blue-200 pb-8 px-2 pt-0'>
+    <div className='mb-18 min-h-screen w-full flex flex-col items-center justify-start bg-gradient-to-br from-blue-100 via-white to-blue-200 pb-8 px-2 pt-0'>
       <Navbar />
       <div className='w-full max-w-3xl flex flex-col gap-10 mt-0'>
         <div className='bg-white/95 p-6 rounded-xl shadow-lg border border-blue-200'>
