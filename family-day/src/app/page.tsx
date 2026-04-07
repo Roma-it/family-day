@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Navbar from "./Navbar";
 
 type MenuItem = { id: string; nombre: string; precio: number };
 type Account = { id: string; nombre: string };
@@ -20,6 +21,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className='min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 via-white to-blue-200 py-8 px-2'>
+      <Navbar />
       <h1 className='text-3xl md:text-4xl font-extrabold mb-12 text-blue-900 drop-shadow text-center w-full'>
         Family Day
       </h1>

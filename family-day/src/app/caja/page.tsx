@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Navbar from "../Navbar";
 
 type MenuItem = { id: string; nombre: string; precio: number };
 type Account = { id: string; nombre: string };
@@ -19,6 +20,17 @@ export default function Caja() {
     "",
   );
   const [carrito, setCarrito] = useState<VentaItem[]>([]);
+
+  const totalPorCuenta: Record<string, number> = ventas.reduce(
+    (acc, venta) => {
+      acc[venta.cuentaId] = (acc[venta.cuentaId] || 0) + venta.total;
+      return acc;
+    },
+    {} as Record<string, number>,
+  );
+
+  const LIMITE = 500000;
+  const cuentaInhabilitada = cuentaId && totalPorCuenta[cuentaId] >= LIMITE;
 
   useEffect(() => {
     fetch("/api/menu")
@@ -68,6 +80,17 @@ export default function Caja() {
       }, 2000);
       return;
     }
+    if (cuentaInhabilitada) {
+      setMensaje(
+        "Esta cuenta ha alcanzado el máximo permitido de $500.000 y no puede recibir más ventas.",
+      );
+      setTipoMensaje("warning");
+      setTimeout(() => {
+        setMensaje("");
+        setTipoMensaje("");
+      }, 3000);
+      return;
+    }
     const total = carrito.reduce((sum, item) => sum + item.subtotal, 0);
     const nuevaVenta = {
       items: carrito,
@@ -92,12 +115,11 @@ export default function Caja() {
       setTipoMensaje("");
     }, 2000);
   }
-
+  //
   return (
-    <div className='min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 via-white to-blue-200 py-8 px-2'>
-      <Link href='/' className='mb-8 text-blue-700 underline font-bold'>
-        ← Volver al Home
-      </Link>
+    <div className='min-h-screen w-full flex flex-col items-center justify-start bg-gradient-to-br from-blue-100 via-white to-blue-200 py-0 md:py-2 px-2 relative'>
+      <Navbar />
+      <div className='h-20 md:h-16' />
       {mensaje && (
         <div
           className={`fixed top-6 right-6 z-50 text-white px-6 py-3 rounded-lg shadow-lg font-semibold text-lg animate-fade-in-out transition-all
@@ -109,7 +131,7 @@ export default function Caja() {
       )}
 
       <h1 className='text-3xl md:text-4xl font-extrabold mb-8 text-blue-900 drop-shadow text-center w-full'>
-        Registro de ventas - Family Day
+        Registro de ventas
       </h1>
 
       <div className='w-full flex flex-col md:flex-row md:items-start md:justify-center gap-8 max-w-5xl'>
@@ -223,9 +245,16 @@ export default function Caja() {
                 ))}
               </select>
             </label>
+            {cuentaInhabilitada && cuentaId && (
+              <div className='bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-3 rounded mb-2 font-semibold'>
+                ⚠️ Esta cuenta ha alcanzado el máximo permitido de $500.000 y no
+                puede recibir más ventas.
+              </div>
+            )}
             <button
               type='submit'
-              className='bg-blue-700 text-white rounded-lg px-4 py-3 font-bold text-lg shadow hover:bg-blue-800 transition-colors'>
+              className={`bg-blue-700 text-white rounded-lg px-4 py-3 font-bold text-lg shadow transition-colors ${cuentaInhabilitada ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-800"}`}
+              disabled={!!cuentaInhabilitada}>
               Registrar venta
             </button>
           </form>

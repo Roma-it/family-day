@@ -1,6 +1,7 @@
 // Página de Resumen: estadísticas por cuenta y por producto
 "use client";
 import Link from "next/link";
+import Navbar from "../Navbar";
 import { useEffect, useState } from "react";
 
 type MenuItem = { id: string; nombre: string; precio: number };
@@ -50,9 +51,7 @@ export default function Resumen() {
 
   return (
     <div className='min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 via-white to-blue-200 py-8 px-2'>
-      <Link href='/' className='mb-8 text-blue-700 underline font-bold'>
-        ← Volver al Home
-      </Link>
+      <Navbar />
       <div className='w-full max-w-3xl flex flex-col gap-10'>
         <div className='bg-white/95 p-8 rounded-xl shadow-lg border border-blue-200'>
           <h2 className='text-xl font-extrabold mb-4 text-blue-900 text-center'>
