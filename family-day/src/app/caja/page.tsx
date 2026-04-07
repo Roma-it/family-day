@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import Navbar from "../Navbar";
 
 type MenuItem = { id: string; nombre: string; precio: number };
@@ -117,12 +116,12 @@ export default function Caja() {
   }
   //
   return (
-    <div className='min-h-screen w-full flex flex-col items-center justify-start bg-gradient-to-br from-blue-100 via-white to-blue-200 py-0 md:py-2 px-2 relative'>
+    <div className='mb-18 min-h-screen w-full flex flex-col items-center justify-start bg-gradient-to-br from-blue-100 via-white to-blue-200 pb-6 md: px-2 relative'>
       <Navbar />
-      <div className='h-20 md:h-16' />
+
       {mensaje && (
         <div
-          className={`fixed top-6 right-6 z-50 text-white px-6 py-3 rounded-lg shadow-lg font-semibold text-lg animate-fade-in-out transition-all
+          className={`fixed left-1/2 -translate-x-1/2 top-6 z-50 text-white px-6 py-3 rounded-lg shadow-lg font-semibold text-lg animate-fade-in-out transition-all max-w-[95vw] w-full sm:w-auto text-center
             ${tipoMensaje === "success" ? "bg-green-600" : ""}
             ${tipoMensaje === "warning" ? "bg-orange-500" : ""}
           `}>
