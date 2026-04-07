@@ -1,13 +1,9 @@
 import { NextResponse } from "next/server";
-import { promises as fs } from "fs";
-import path from "path";
-
-const ACCOUNTS_PATH = path.join(process.cwd(), "data", "accounts.json");
+import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
-    const data = await fs.readFile(ACCOUNTS_PATH, "utf-8");
-    const accounts = JSON.parse(data);
+    const accounts = await prisma.account.findMany();
     return NextResponse.json(accounts);
   } catch (e) {
     return NextResponse.json([], { status: 200 });

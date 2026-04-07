@@ -1,0 +1,42 @@
+// Prisma schema for Family Day
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Account {
+    id     String  @id @default(uuid())
+    nombre String  @unique
+    ventas Venta[]
+}
+
+model MenuItem {
+    id         String      @id @default(uuid())
+    nombre     String      @unique
+    precio     Int
+    ventaItems VentaItem[]
+}
+
+model Venta {
+    id        String      @id @default(uuid())
+    cuenta    Account     @relation(fields: [cuentaId], references: [id])
+    cuentaId  String
+    createdAt DateTime    @default(now())
+    items     VentaItem[]
+    total     Int
+}
+
+model VentaItem {
+    id         String   @id @default(uuid())
+    venta      Venta    @relation(fields: [ventaId], references: [id])
+    ventaId    String
+    producto   MenuItem @relation(fields: [productoId], references: [id])
+    productoId String
+    cantidad   Int
+    subtotal   Int
+}
