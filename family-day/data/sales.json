@@ -1,0 +1,78 @@
+[
+  {
+    "productoId": "medialuna",
+    "cantidad": 1,
+    "cuentaId": "efectivo",
+    "total": 2000
+  },
+  {
+    "productoId": "medialuna",
+    "cantidad": 2,
+    "cuentaId": "padre02",
+    "total": 4000
+  },
+  {
+    "productoId": "porcion_dulce",
+    "cantidad": 6,
+    "cuentaId": "padre02",
+    "total": 18000
+  },
+  {
+    "productoId": "dona",
+    "cantidad": 1,
+    "cuentaId": "padre01",
+    "total": 2000
+  },
+  {
+    "productoId": "hamburguesa_bebida",
+    "cantidad": 1,
+    "cuentaId": "efectivo",
+    "total": 7000
+  },
+  {
+    "productoId": "porcion_dulce",
+    "cantidad": 1,
+    "cuentaId": "padre04",
+    "total": 3000
+  },
+  {
+    "productoId": "agua_mate",
+    "cantidad": 1,
+    "cuentaId": "padre02",
+    "total": 1000
+  },
+  {
+    "productoId": "hamburguesa",
+    "cantidad": 3,
+    "cuentaId": "padre03",
+    "total": 15000
+  },
+  {
+    "productoId": "medialuna",
+    "cantidad": 1,
+    "cuentaId": "efectivo",
+    "total": 2000
+  },
+  {
+    "productoId": "hamburguesa_bebida",
+    "cantidad": 1,
+    "cuentaId": "padre16",
+    "total": 7000
+  },
+  {
+    "items": [
+      {
+        "productoId": "churro",
+        "cantidad": 1,
+        "subtotal": 2000
+      },
+      {
+        "productoId": "medialuna",
+        "cantidad": 2,
+        "subtotal": 4000
+      }
+    ],
+    "cuentaId": "efectivo",
+    "total": 6000
+  }
+]

@@ -1,0 +1,23 @@
+[
+  { "id": "efectivo", "nombre": "Efectivo" },
+  { "id": "padre01", "nombre": "Juan Pérez" },
+  { "id": "padre02", "nombre": "María González" },
+  { "id": "padre03", "nombre": "Carlos López" },
+  { "id": "padre04", "nombre": "Ana Martínez" },
+  { "id": "padre05", "nombre": "Sofía Torres" },
+  { "id": "padre06", "nombre": "Diego Fernández" },
+  { "id": "padre07", "nombre": "Lucía Ramírez" },
+  { "id": "padre08", "nombre": "Martín Castro" },
+  { "id": "padre09", "nombre": "Valentina Díaz" },
+  { "id": "padre10", "nombre": "Federico Gómez" },
+  { "id": "padre11", "nombre": "Paula Herrera" },
+  { "id": "padre12", "nombre": "Agustín Sosa" },
+  { "id": "padre13", "nombre": "Camila Ruiz" },
+  { "id": "padre14", "nombre": "Matías Romero" },
+  { "id": "padre15", "nombre": "Florencia Molina" },
+  { "id": "padre16", "nombre": "Joaquín Silva" },
+  { "id": "padre17", "nombre": "Gabriela Méndez" },
+  { "id": "padre18", "nombre": "Tomás Aguirre" },
+  { "id": "padre19", "nombre": "Micaela Ponce" },
+  { "id": "padre20", "nombre": "Nicolás Cabrera" }
+]
