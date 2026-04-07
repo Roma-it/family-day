@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Navbar from "../Navbar";
+import { TrashIcon } from "@heroicons/react/24/outline";
 
 type MenuItem = { id: string; nombre: string; precio: number };
 type Account = { id: string; nombre: string };
@@ -178,13 +179,19 @@ export default function Caja() {
               <h2 className='text-xl font-extrabold mb-4 text-blue-900'>
                 Carrito
               </h2>
-              <table className='w-full text-left text-blue-900 font-medium text-sm'>
+              <table className='w-full text-blue-900 font-medium text-sm table-fixed'>
+                <colgroup>
+                  <col style={{ width: "50%" }} />
+                  <col style={{ width: "18%" }} />
+                  <col style={{ width: "22%" }} />
+                  <col style={{ width: "10%" }} />
+                </colgroup>
                 <thead>
                   <tr>
-                    <th className='py-1'>Producto</th>
-                    <th className='py-1 text-right'>Cantidad</th>
-                    <th className='py-1 text-right'>Subtotal</th>
-                    <th></th>
+                    <th className='py-1 text-left'>Producto</th>
+                    <th className='py-1 text-center'>Cantidad</th>
+                    <th className='py-1 text-right align-middle'>Subtotal</th>
+                    <th className='py-1 text-center'></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -194,16 +201,21 @@ export default function Caja() {
                         {menu.find((m) => m.id === item.productoId)?.nombre ||
                           item.productoId}
                       </td>
-                      <td className='py-1 text-right'>{item.cantidad}</td>
-                      <td className='py-1 text-right'>${item.subtotal}</td>
-                      <td className='py-1 text-right'>
+                      <td className='py-1 text-center'>
+                        {item.cantidad.toLocaleString("es-AR")}
+                      </td>
+                      <td className='py-1 text-right align-middle'>
+                        $ {item.subtotal.toLocaleString("es-AR")}
+                      </td>
+                      <td className='py-1 text-center align-middle'>
                         <button
                           type='button'
-                          className='text-red-600 hover:underline font-bold'
+                          className='p-0.5 text-red-600 hover:text-red-800'
+                          aria-label='Quitar'
                           onClick={() => {
                             setCarrito(carrito.filter((_, i) => i !== idx));
                           }}>
-                          Quitar
+                          <TrashIcon className='h-5 w-5' strokeWidth={2.2} />
                         </button>
                       </td>
                     </tr>
@@ -215,7 +227,10 @@ export default function Caja() {
                       Total:
                     </td>
                     <td className='font-bold text-right'>
-                      ${carrito.reduce((sum, i) => sum + i.subtotal, 0)}
+                      ${" "}
+                      {carrito
+                        .reduce((sum, i) => sum + i.subtotal, 0)
+                        .toLocaleString("es-AR")}
                     </td>
                     <td></td>
                   </tr>
