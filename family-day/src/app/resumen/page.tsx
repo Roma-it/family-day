@@ -27,27 +27,31 @@ export default function Resumen() {
   }, []);
 
   // Resumen por cuenta
-  const resumenCuentas = accounts.map((cuenta) => {
-    const total = ventas
-      .filter((venta) => venta.cuentaId === cuenta.id)
-      .reduce((sum, venta) => sum + (venta.total || 0), 0);
-    return { ...cuenta, total };
-  });
+  const resumenCuentas = accounts
+    .map((cuenta) => {
+      const total = ventas
+        .filter((venta) => venta.cuentaId === cuenta.id)
+        .reduce((sum, venta) => sum + (venta.total || 0), 0);
+      return { ...cuenta, total };
+    })
+    .sort((a, b) => b.total - a.total);
 
   // Resumen por producto
-  const resumenProductos = menu.map((producto) => {
-    let cantidad = 0;
-    let dinero = 0;
-    ventas.forEach((venta) => {
-      venta.items.forEach((item) => {
-        if (item.productoId === producto.id) {
-          cantidad += item.cantidad;
-          dinero += item.subtotal;
-        }
+  const resumenProductos = menu
+    .map((producto) => {
+      let cantidad = 0;
+      let dinero = 0;
+      ventas.forEach((venta) => {
+        venta.items.forEach((item) => {
+          if (item.productoId === producto.id) {
+            cantidad += item.cantidad;
+            dinero += item.subtotal;
+          }
+        });
       });
-    });
-    return { ...producto, cantidad, dinero };
-  });
+      return { ...producto, cantidad, dinero };
+    })
+    .sort((a, b) => b.cantidad - a.cantidad);
 
   return (
     <div className='mb-18 min-h-screen w-full flex flex-col items-center justify-start bg-gradient-to-br from-blue-100 via-white to-blue-200 pb-8 px-2 pt-0'>

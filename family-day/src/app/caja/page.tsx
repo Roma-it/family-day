@@ -149,11 +149,17 @@ export default function Caja() {
                 <option value='' disabled>
                   Selecciona un producto
                 </option>
-                {menu.map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item.nombre} (${item.precio})
-                  </option>
-                ))}
+                {[...menu]
+                  .sort((a, b) =>
+                    a.nombre.localeCompare(b.nombre, "es", {
+                      sensitivity: "base",
+                    }),
+                  )
+                  .map((item) => (
+                    <option key={item.id} value={item.id}>
+                      {item.nombre} (${item.precio})
+                    </option>
+                  ))}
               </select>
             </label>
             <label className='flex flex-col text-blue-900 font-semibold'>
