@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Navbar from "../Navbar";
-import { TrashIcon } from "@heroicons/react/24/outline";
+import { TrashIcon, PlusIcon, MinusIcon } from "@heroicons/react/24/outline";
 
 type MenuItem = { id: string; nombre: string; precio: number };
 type Account = { id: string; nombre: string };
@@ -162,9 +162,9 @@ export default function Caja() {
                 <button
                   type='button'
                   aria-label='Restar'
-                  className='bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-full w-8 h-8 flex items-center justify-center border border-blue-300 text-xl font-bold'
+                  className='bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-full w-8 h-8 flex items-center justify-center border border-blue-300'
                   onClick={() => setCantidad((c) => Math.max(1, c - 1))}>
-                  -
+                  <MinusIcon className='h-5 w-5' />
                 </button>
                 <input
                   type='text'
@@ -181,9 +181,9 @@ export default function Caja() {
                 <button
                   type='button'
                   aria-label='Sumar'
-                  className='bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-full w-8 h-8 flex items-center justify-center border border-blue-300 text-xl font-bold'
+                  className='bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-full w-8 h-8 flex items-center justify-center border border-blue-300'
                   onClick={() => setCantidad((c) => Math.max(1, c + 1))}>
-                  +
+                  <PlusIcon className='h-5 w-5' />
                 </button>
               </div>
             </label>
