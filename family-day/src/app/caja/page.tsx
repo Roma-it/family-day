@@ -158,13 +158,34 @@ export default function Caja() {
             </label>
             <label className='flex flex-col text-blue-900 font-semibold'>
               Cantidad
-              <input
-                type='number'
-                min={1}
-                value={cantidad}
-                onChange={(e) => setCantidad(Number(e.target.value))}
-                className='border-2 border-blue-300 rounded p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-blue-50 text-blue-900 font-medium'
-              />
+              <div className='w-full flex items-center gap-2 mt-1'>
+                <button
+                  type='button'
+                  aria-label='Restar'
+                  className='bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-full w-8 h-8 flex items-center justify-center border border-blue-300 text-xl font-bold'
+                  onClick={() => setCantidad((c) => Math.max(1, c - 1))}>
+                  -
+                </button>
+                <input
+                  type='text'
+                  inputMode='numeric'
+                  pattern='[0-9]*'
+                  min={1}
+                  value={cantidad === 0 ? "" : cantidad}
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/\D/g, "");
+                    setCantidad(val === "" ? 0 : Math.max(1, Number(val)));
+                  }}
+                  className='border-2 border-blue-300 rounded w-16 text-center px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-blue-50 text-blue-900 font-medium text-lg'
+                />
+                <button
+                  type='button'
+                  aria-label='Sumar'
+                  className='bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-full w-8 h-8 flex items-center justify-center border border-blue-300 text-xl font-bold'
+                  onClick={() => setCantidad((c) => Math.max(1, c + 1))}>
+                  +
+                </button>
+              </div>
             </label>
             <button
               type='submit'
