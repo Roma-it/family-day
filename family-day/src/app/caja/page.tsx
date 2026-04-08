@@ -158,7 +158,7 @@ export default function Caja() {
             </label>
             <label className='flex flex-col text-blue-900 font-semibold'>
               Cantidad
-              <div className='w-full flex items-center gap-2 mt-1'>
+              <div className='w-full flex items-center justify-center gap-2 mt-1'>
                 <button
                   type='button'
                   aria-label='Restar'
